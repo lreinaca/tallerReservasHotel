@@ -6,6 +6,7 @@ public class Usuario {
    private String nombre;
    private String email;
    private int edad;
+   // Constructor
    public Usuario() {
        this.id = UUID.randomUUID().toString();
    }
