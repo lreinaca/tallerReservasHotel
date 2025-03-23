@@ -11,8 +11,7 @@ public class Reserva {
 	       this.id = UUID.randomUUID().toString();
 	   }
 
-	public Reserva(Usuario usuario, String fechaIngreso, String fechaSalida) {
-		this.usuario = usuario;
+	public Reserva(String fechaIngreso, String fechaSalida) {
 		this.id = UUID.randomUUID().toString();
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
@@ -50,13 +49,4 @@ public class Reserva {
 		this.fechaSalida = fechaSalida;
 	}
 
-	@Override
-	public String toString() {
-		return "Reserva{" +
-				"usuario=" + usuario +
-				", id='" + id + '\'' +
-				", fechaIngreso='" + fechaIngreso + '\'' +
-				", fechaSalida='" + fechaSalida + '\'' +
-				'}';
-	}
 }
