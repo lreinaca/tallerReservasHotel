@@ -1,4 +1,5 @@
 package com.example.demo;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,11 +44,11 @@ public class ReservaRepository {
     }
     
     // Buscar reservas por filtros
-    public List<Reserva> buscarPorFiltros(String idUsuario, String fechaIngreso, String fechaSalida) {
-        return baseDeDatos.values().stream()
-        		.filter(reserva -> idUsuario == null || reserva.getUsuario().getId().equals(idUsuario))
-        		.filter(reserva -> fechaIngreso == null || reserva.getFechaIngreso().equals(fechaIngreso))
-        		.filter(reserva -> fechaSalida == null || reserva.getFechaSalida().equals(fechaSalida))
+    public List<Reserva> buscarPorFiltros( LocalDate fechaIngreso, LocalDate fechaSalida) {
+        
+    	return baseDeDatos.values().stream()
+                .filter(reserva -> fechaIngreso == null || !reserva.getFechaIngreso().isBefore(fechaIngreso)) // fechaIngreso ≤ reserva.getFechaIngreso()
+                .filter(reserva -> fechaSalida == null || !reserva.getFechaIngreso().isAfter(fechaSalida))  // reserva.getFechaIngreso() ≤ fechaSalida
                 .collect(Collectors.toList());
     }
 }
