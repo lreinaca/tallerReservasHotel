@@ -1,51 +1,62 @@
 package com.example.demo;
+import java.time.LocalDate;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 public class Reserva {
 
-	private Usuario usuario;
+	private String nombreUsuario;
 	private String id;
-	private String fechaIngreso;
-	private String fechaSalida;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate fechaIngreso;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate fechaSalida;
     //Constructor
 	public Reserva() {
 	       this.id = UUID.randomUUID().toString();
 	   }
 
-	public Reserva(String fechaIngreso, String fechaSalida) {
+	public Reserva(String  nombreUsuario, LocalDate fechaIngreso, LocalDate fechaSalida) {
 		this.id = UUID.randomUUID().toString();
+		this.nombreUsuario = nombreUsuario;
 		this.fechaIngreso = fechaIngreso;
 		this.fechaSalida = fechaSalida;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
+
 
 	public String getId() {
 		return id;
 	}
 
-	public String getFechaIngreso() {
+	public LocalDate getFechaIngreso() {
 		return fechaIngreso;
 	}
 
-	public String getFechaSalida() {
+	public LocalDate getFechaSalida() {
 		return fechaSalida;
 	}
+	
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	public void setFechaIngreso(String fechaIngreso) {
+	public void setFechaIngreso(LocalDate fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
 	}
 
-	public void setFechaSalida(String fechaSalida) {
+	public void setFechaSalida(LocalDate fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
 

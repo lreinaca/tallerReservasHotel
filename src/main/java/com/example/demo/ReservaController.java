@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +42,15 @@ public class ReservaController {
 		if (usuario == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		reserva.setUsuario(usuario);
+		reserva.setNombreUsuario(usuario.getNombre());
 		Reserva newReserva = reservaService.save(reserva);
 		return new ResponseEntity<>(newReserva, HttpStatus.CREATED);
 	}
 	
 	// buscar reservas por filtros
 	@GetMapping("/buscar")
-	public ResponseEntity<List<Reserva>> buscarReservas(@RequestParam String fechaIngreso, @RequestParam String fechaSalida , Reserva reserva) {
-		List<Reserva> reservas = reservaService.buscarPorFiltros(reserva.getUsuario().getId(), reserva.getFechaIngreso(), reserva.getFechaSalida());
+	public ResponseEntity<List<Reserva>> buscarReservas(@RequestParam LocalDate fechaIngreso, @RequestParam LocalDate fechaSalida) {
+		List<Reserva> reservas = reservaService.buscarPorFiltros(fechaIngreso, fechaSalida);
 		return new ResponseEntity<>(reservas, HttpStatus.OK);
 	}
 
